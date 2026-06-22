@@ -1,7 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Mail, MapPin, Clock, PhoneCall } from 'lucide-react';
 
 export const Footer = () => {
+  const location = useLocation();
+
+  const handleScroll = (id: string, e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      if (id === 'inicio') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
   return (
     <footer id="footer" className="relative bg-slate-950 border-t border-slate-900 pt-20 pb-10 overflow-hidden">
       {/* Background Glow */}
@@ -11,10 +23,10 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-6">
-            <Link to="/" className="flex items-center text-2xl font-black tracking-tight group">
-              <img 
-                src="/images/logo.png" 
-                alt="ThibautMechanics Logo" 
+            <Link to="/" onClick={(e) => handleScroll('inicio', e)} className="flex items-center text-2xl font-black tracking-tight group">
+              <img
+                src="/images/Thibaut Mechanics-Photoroom.png"
+                alt="ThibautMechanics Logo"
                 className="w-16 h-16 object-contain drop-shadow-[0_0_8px_rgba(220,38,38,0.4)] group-hover:drop-shadow-[0_0_12px_rgba(220,38,38,0.7)] transition-all duration-300"
               />
               <span className="ml-3 text-xl md:text-2xl font-extrabold text-white">
@@ -26,21 +38,21 @@ export const Footer = () => {
             </p>
             <div className="flex items-center space-x-4">
               {/* WhatsApp Icon */}
-              <a 
-                href="https://wa.me/5491112345678" 
-                target="_blank" 
+              <a
+                href="https://wa.me/5491112345678"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 hover:border-primary/50 hover:bg-primary/10 flex items-center justify-center text-slate-400 hover:text-primary transition-all duration-300 shadow-md"
                 aria-label="WhatsApp"
               >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.725 1.451 5.437.002 9.861-4.416 9.864-9.854.002-2.634-1.02-5.11-2.881-6.973C16.492 1.915 14.021.872 11.397.872c-5.44 0-9.864 4.42-9.867 9.858 0 1.968.528 3.89 1.527 5.617l-.994 3.63 3.731-.978s.002-.001.003-.001zm11.367-6.851c-.302-.15-1.786-.881-2.062-.982-.278-.101-.48-.15-.68.15-.2.3-.775.98-.95 1.18-.175.2-.35.225-.65.075-.302-.15-1.272-.469-2.423-1.495-.895-.798-1.5-1.784-1.276-2.083.224-.3.076-.462-.075-.612-.135-.135-.3-.35-.45-.525-.15-.175-.2-.3-.3-.5s-.05-.375-.025-.525C9.22 6.8 9.82 5.35 10.12 5.05c.3-.3.4-.375.55-.225.15.15.35.35.5.525.15.175.225.375.125.575-.1.2-.55.88-.675 1.03-.125.15-.25.225-.55.075-.3-.15-1.24-.51-2.362-1.51-.872-.778-1.46-1.74-1.63-2.039-.17-.3-.018-.461.13-.61.135-.135.302-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525C6.812 3.125 5.25.95 4.65.35c-.584-.583-1.11-.475-1.525-.475-.375 0-.725.025-1.025.3-.3.275-1.15 1.125-1.15 2.75s1.175 3.175 1.325 3.375c.15.2 2.3 3.513 5.575 4.925.78.337 1.387.538 1.862.689.782.248 1.49.213 2.05.13.628-.094 1.787-.73 2.037-1.438.25-.7.25-1.3.175-1.425-.076-.12-.276-.2-.576-.35z" />
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
               </a>
               {/* Instagram Icon */}
-              <a 
-                href="https://instagram.com/thibautmechanics" 
-                target="_blank" 
+              <a
+                href="https://instagram.com/thibautmechanics"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 hover:border-primary/50 hover:bg-primary/10 flex items-center justify-center text-slate-400 hover:text-primary transition-all duration-300 shadow-md"
                 aria-label="Instagram"
@@ -52,8 +64,8 @@ export const Footer = () => {
                 </svg>
               </a>
               {/* Gmail Icon */}
-              <a 
-                href="mailto:thibautmechanics@gmail.com" 
+              <a
+                href="mailto:thibautmechanics@gmail.com"
                 className="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 hover:border-primary/50 hover:bg-primary/10 flex items-center justify-center text-slate-400 hover:text-primary transition-all duration-300 shadow-md"
                 aria-label="Email"
               >
@@ -67,13 +79,13 @@ export const Footer = () => {
             <h4 className="text-sm font-bold uppercase tracking-wider text-slate-200">Navegación</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-sm text-slate-400 hover:text-primary transition-colors">Inicio</Link>
+                <Link to="/#inicio" onClick={(e) => handleScroll('inicio', e)} className="text-sm text-slate-400 hover:text-primary transition-colors">Inicio</Link>
               </li>
               <li>
-                <a href="#services" className="text-sm text-slate-400 hover:text-primary transition-colors">Servicios</a>
+                <Link to="/#services" onClick={(e) => handleScroll('services', e)} className="text-sm text-slate-400 hover:text-primary transition-colors">Servicios</Link>
               </li>
               <li>
-                <a href="#videos" className="text-sm text-slate-400 hover:text-primary transition-colors">Trabajos</a>
+                <Link to="/#videos" onClick={(e) => handleScroll('videos', e)} className="text-sm text-slate-400 hover:text-primary transition-colors">Trabajos</Link>
               </li>
               <li>
                 <Link to="/agendar" className="text-sm text-slate-400 hover:text-primary transition-colors">Agendar Turno</Link>
@@ -87,7 +99,7 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 text-sm text-slate-400">
                 <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>Atención a domicilio en CABA y GBA Norte</span>
+                <span>Atención a domicilio en CABA, GBA Norte y GBA Oeste</span>
               </li>
               <li className="flex items-start space-x-3 text-sm text-slate-400">
                 <Clock className="w-5 h-5 text-primary flex-shrink-0" />

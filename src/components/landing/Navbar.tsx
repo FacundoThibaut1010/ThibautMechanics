@@ -63,6 +63,24 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
+  // Handle smooth scroll on load or hash change
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+    if (location.hash) {
+      const id = location.hash.substring(1);
+      setTimeout(() => {
+        if (id === 'inicio') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          const el = document.getElementById(id);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }, 150);
+    }
+  }, [location.pathname, location.hash]);
+
   const getSectionLabel = () => {
     if (location.pathname === '/agendar') return 'Reserva';
     if (location.pathname.startsWith('/admin')) return 'Admin';
@@ -159,7 +177,7 @@ export const Navbar = () => {
               ref={btnRef}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              className="shadow-primary/20 shadow-lg rounded-full h-10 px-5 text-sm"
+              className="shadow-primary/20 shadow-lg rounded-full h-10 px-5 text-sm animate-pulse-glow"
             >
               Reservar
             </Button>

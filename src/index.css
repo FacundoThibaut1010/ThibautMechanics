@@ -15,3 +15,29 @@
     @apply bg-slate-900/40 backdrop-blur-md border border-slate-800/50 shadow-xl;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 12px rgba(220, 38, 38, 0.4), 0 0 24px rgba(220, 38, 38, 0.1);
+  }
+  50% {
+    transform: scale(1.025);
+    box-shadow: 0 0 24px rgba(220, 38, 38, 0.7), 0 0 36px rgba(220, 38, 38, 0.3);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+/* Make native calendar and clock indicators white in dark inputs */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
