@@ -102,34 +102,34 @@ export const Services = () => {
             <div 
               key={idx}
               ref={el => { cardsRef.current[idx] = el; }}
-              className="glass-card rounded-3xl p-8 hover:-translate-y-2 transition-all duration-300 group flex flex-col border border-slate-800 hover:border-primary/30 shadow-2xl relative overflow-hidden"
+              className="glass-card rounded-2xl md:rounded-3xl p-5 md:p-8 hover:-translate-y-2 transition-all duration-300 group flex flex-col border border-slate-800 hover:border-primary/30 shadow-2xl relative overflow-hidden"
             >
               {/* Top hover glow */}
               <div className="absolute -top-24 -left-24 w-48 h-48 bg-primary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-              <div className="flex justify-between items-start mb-6 relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/10 transition-colors">
-                  <service.icon className="w-7 h-7 text-primary" />
+              <div className="flex justify-between items-start mb-4 md:mb-6 relative z-10">
+                <div className="w-11 h-11 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/10 transition-colors">
+                  <service.icon className="w-5 h-5 md:w-7 md:h-7 text-primary" />
                 </div>
                 <div className="text-right">
-                  <span className="text-xs text-slate-500 block uppercase tracking-wider font-semibold">Desde</span>
-                  <span className="text-2xl font-black text-white">{service.price}</span>
-                  <span className="text-xs text-slate-400 block">{service.unit}</span>
+                  <span className="text-[10px] md:text-xs text-slate-500 block uppercase tracking-wider font-semibold">Desde</span>
+                  <span className="text-xl md:text-2xl font-black text-white">{service.price}</span>
+                  <span className="text-[10px] md:text-xs text-slate-400 block">{service.unit}</span>
                 </div>
               </div>
 
-              <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-primary transition-colors">{service.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">
+              <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-white group-hover:text-primary transition-colors">{service.title}</h3>
+              <p className="text-slate-400 text-xs md:text-sm leading-relaxed mb-4 md:mb-6">
                 {service.description}
               </p>
 
-              <hr className="border-slate-800/80 mb-6" />
+              <hr className="border-slate-800/80 mb-4 md:mb-6" />
 
               {/* Detail checkmarks */}
-              <ul className="space-y-3 mb-8 flex-1">
+              <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8 flex-1">
                 {service.details.map((detail, dIdx) => (
-                  <li key={dIdx} className="flex items-start text-sm text-slate-300">
-                    <Check className="w-4 h-4 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                  <li key={dIdx} className="flex items-start text-xs md:text-sm text-slate-300">
+                    <Check className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary mr-2 md:mr-3 mt-0.5 flex-shrink-0" />
                     <span>{detail}</span>
                   </li>
                 ))}
@@ -137,7 +137,7 @@ export const Services = () => {
 
               <Link 
                 to="/agendar"
-                className="w-full py-3 rounded-xl bg-slate-900 hover:bg-primary hover:text-slate-950 text-white font-semibold text-center text-sm border border-slate-800 hover:border-primary transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/20 block"
+                className="w-full py-2.5 md:py-3 rounded-lg md:rounded-xl bg-slate-900 hover:bg-primary hover:text-slate-950 text-white font-semibold text-center text-xs md:text-sm border border-slate-800 hover:border-primary transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/20 block"
               >
                 Solicitar Cotización
               </Link>

@@ -20,7 +20,7 @@ export default function BookingPage() {
 
       <Navbar />
       
-      <main className="flex-1 flex items-center justify-center py-32 px-6 relative z-10 w-full">
+      <main className="flex-1 flex items-center justify-center py-20 px-4 md:py-32 md:px-6 relative z-10 w-full">
         <div className="w-full max-w-4xl">
           <BookingForm />
         </div>

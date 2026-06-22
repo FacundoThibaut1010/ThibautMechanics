@@ -16,7 +16,7 @@ export const BookingForm = () => {
     name: '',
     phone: '',
     address: '',
-    service: 'Frenos' as ServiceType,
+    service: '' as ServiceType | '',
     preferredDate: '',
     preferredTime: '',
   });
@@ -71,7 +71,7 @@ export const BookingForm = () => {
         phone: formData.phone,
         address: formData.address,
       },
-      service: formData.service,
+      service: formData.service as ServiceType,
       date: new Date().toISOString(),
       status: 'Pendiente',
       preferredDate: formData.preferredDate,
@@ -91,23 +91,23 @@ export const BookingForm = () => {
       name: '',
       phone: '',
       address: '',
-      service: 'Frenos',
+      service: '' as ServiceType | '',
       preferredDate: '',
       preferredTime: '',
     });
   };
 
   return (
-    <section id="booking" className="py-24 relative bg-slate-950/50">
-      <div className="max-w-3xl mx-auto px-6 relative z-10" ref={formRef}>
-        <div className="glass-card rounded-3xl p-8 md:p-12">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-4">Reserva tu <span className="text-primary">Turno</span></h2>
-            <p className="text-slate-400">Completa tus datos y nos acercaremos a tu domicilio.</p>
+    <section id="booking" className="py-2 md:py-6 relative">
+      <div className="max-w-3xl mx-auto px-0 md:px-6 relative z-10" ref={formRef}>
+        <div className="glass-card rounded-2xl md:rounded-3xl p-5 md:p-10 shadow-2xl">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Reserva tu <span className="text-primary">Turno</span></h2>
+            <p className="text-slate-400 text-sm md:text-base">Completa tus datos y nos acercaremos a tu domicilio.</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
+            <div className="grid md:grid-cols-2 gap-5 md:grid-cols-2">
               <Input
                 label="Nombre Completo"
                 placeholder="Juan Pérez"
@@ -133,13 +133,20 @@ export const BookingForm = () => {
               required
             />
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-5">
               <Input
                 label="Fecha de Visita"
                 type="date"
                 min={todayStr}
                 value={formData.preferredDate}
                 onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
+                onClick={(e) => {
+                  try {
+                    e.currentTarget.showPicker();
+                  } catch {
+                    // Browser might not support showPicker
+                  }
+                }}
                 required
               />
               <Input
@@ -149,6 +156,13 @@ export const BookingForm = () => {
                 max="20:00"
                 value={formData.preferredTime}
                 onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
+                onClick={(e) => {
+                  try {
+                    e.currentTarget.showPicker();
+                  } catch {
+                    // Browser might not support showPicker
+                  }
+                }}
                 required
               />
             </div>
@@ -159,14 +173,16 @@ export const BookingForm = () => {
                 className="flex h-11 w-full rounded-md border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-colors"
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value as ServiceType })}
+                required
               >
+                <option value="" disabled>Seleccione un servicio...</option>
                 <option value="Frenos">Frenos</option>
                 <option value="Amortiguadores">Amortiguadores</option>
                 <option value="Rotulas">Rótulas y Extremos</option>
               </select>
             </div>
 
-            <Button type="submit" className="w-full" size="lg">
+            <Button type="submit" className="w-full mt-2" size="lg">
               Confirmar Reserva
             </Button>
           </form>

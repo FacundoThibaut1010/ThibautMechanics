@@ -28,7 +28,6 @@ export const Navbar = () => {
   // Spy Scroll Logic
   useEffect(() => {
     if (location.pathname !== '/') {
-      setActiveSection('');
       return;
     }
 
@@ -36,6 +35,15 @@ export const Navbar = () => {
     
     const handleScroll = () => {
       const scrollY = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const innerHeight = window.innerHeight;
+      
+      // If we are close to the bottom of the page, activate footer
+      if (scrollY + innerHeight >= scrollHeight - 80) {
+        setActiveSection('footer');
+        return;
+      }
+
       let current = 'inicio';
 
       sections.forEach(id => {
@@ -54,6 +62,23 @@ export const Navbar = () => {
     handleScroll(); // Check immediately
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
+
+  const getSectionLabel = () => {
+    if (location.pathname === '/agendar') return 'Reserva';
+    if (location.pathname.startsWith('/admin')) return 'Admin';
+    switch (activeSection) {
+      case 'inicio':
+        return 'Inicio';
+      case 'services':
+        return 'Servicios';
+      case 'videos':
+        return 'Trabajos';
+      case 'footer':
+        return 'Contacto';
+      default:
+        return 'Inicio';
+    }
+  };
 
   const handleMouseEnter = () => {
     gsap.to(btnRef.current, { scale: 1.05, duration: 0.2, ease: 'power1.inOut' });
@@ -86,7 +111,7 @@ export const Navbar = () => {
 
   return (
     <nav ref={navRef} className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
-      <div className="bg-slate-950/70 backdrop-blur-xl border border-slate-800/60 shadow-2xl shadow-black/50 rounded-full h-16 px-6 flex items-center justify-between">
+      <div className="relative bg-slate-950/70 backdrop-blur-xl border border-slate-800/60 shadow-2xl shadow-black/50 rounded-full h-16 px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center text-xl font-bold tracking-tight group">
           <img 
             src="/images/Thibaut Mechanics-Photoroom.png" 
@@ -94,6 +119,12 @@ export const Navbar = () => {
             className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_0_8px_rgba(220,38,38,0.4)] group-hover:drop-shadow-[0_0_12px_rgba(220,38,38,0.7)] transition-all duration-300 -my-2"
           />
         </Link>
+
+        {/* Mobile current section indicator */}
+        <div className="absolute left-1/2 -translate-x-1/2 flex md:hidden items-center justify-center bg-slate-900/80 border border-slate-800/80 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-200 tracking-wide gap-2 shadow-lg shadow-black/30 backdrop-blur-md">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_rgba(220,38,38,0.8)] animate-pulse" />
+          {getSectionLabel()}
+        </div>
         
         <div className="hidden md:flex items-center bg-slate-900/50 rounded-full px-2 py-1 border border-slate-800/50">
           <button 

@@ -42,7 +42,7 @@ export const Hero = () => {
         <img 
           src="/images/Thibaut Mechanics-Photoroom.png" 
           alt="Thibaut Mechanics Logo" 
-          className="hero-badge w-64 h-64 md:w-96 md:h-96 object-contain mx-auto mb-1 drop-shadow-[0_0_20px_rgba(220,38,38,0.5)] transition-transform duration-300 hover:scale-105"
+          className="hero-badge w-64 h-64 md:w-96 md:h-96 object-contain mx-auto -mb-6 md:-mb-12 drop-shadow-[0_0_20px_rgba(220,38,38,0.5)] transition-transform duration-300 hover:scale-105"
         />
 
         <div className="hero-badge inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-sm font-medium text-slate-300 mb-4">
