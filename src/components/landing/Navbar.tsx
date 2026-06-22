@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { Button } from '../ui/Button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home, Wrench, Video, Phone } from 'lucide-react';
 
 export const Navbar = () => {
   const navRef = useRef<HTMLElement>(null);
@@ -196,38 +196,42 @@ export const Navbar = () => {
       {/* Mobile Drawer Overlay */}
       {isMobileMenuOpen && (
         <div className="fixed inset-x-0 top-20 z-40 md:hidden animate-in fade-in slide-in-from-top-4 duration-300 px-2">
-          <div className="bg-slate-950/95 backdrop-blur-2xl border border-slate-800/80 shadow-2xl rounded-3xl p-6 flex flex-col gap-3">
+          <div className="bg-slate-950/95 backdrop-blur-2xl border border-slate-800/80 shadow-[0_10px_50px_-12px_rgba(220,38,38,0.25)] rounded-3xl p-5 flex flex-col gap-2.5">
             <button 
               onClick={(e) => { setIsMobileMenuOpen(false); scrollToSection('inicio', e); }} 
-              className={`w-full py-3 rounded-2xl text-left px-4 text-sm font-medium transition-all duration-200 ${location.pathname === '/' && (activeSection === 'inicio' || activeSection === '') ? 'bg-slate-900 text-primary' : 'text-slate-400 hover:bg-slate-900 hover:text-slate-100'}`}
+              className={`w-full py-3 rounded-2xl text-left px-4 text-sm font-medium flex items-center gap-3 transition-all duration-200 ${location.pathname === '/' && (activeSection === 'inicio' || activeSection === '') ? 'bg-slate-900/80 border-l-4 border-primary text-primary font-bold shadow-inner shadow-black/20' : 'text-slate-400 border-l-4 border-transparent hover:bg-slate-900/50 hover:text-slate-100 hover:border-slate-800'}`}
             >
+              <Home className={`w-4 h-4 ${location.pathname === '/' && (activeSection === 'inicio' || activeSection === '') ? 'text-primary' : 'text-slate-500'}`} />
               Inicio
             </button>
             <button 
               onClick={(e) => { setIsMobileMenuOpen(false); scrollToSection('services', e); }} 
-              className={`w-full py-3 rounded-2xl text-left px-4 text-sm font-medium transition-all duration-200 ${activeSection === 'services' ? 'bg-slate-900 text-primary' : 'text-slate-400 hover:bg-slate-900 hover:text-slate-100'}`}
+              className={`w-full py-3 rounded-2xl text-left px-4 text-sm font-medium flex items-center gap-3 transition-all duration-200 ${activeSection === 'services' ? 'bg-slate-900/80 border-l-4 border-primary text-primary font-bold shadow-inner shadow-black/20' : 'text-slate-400 border-l-4 border-transparent hover:bg-slate-900/50 hover:text-slate-100 hover:border-slate-800'}`}
             >
+              <Wrench className={`w-4 h-4 ${activeSection === 'services' ? 'text-primary' : 'text-slate-500'}`} />
               Servicios
             </button>
             <button 
               onClick={(e) => { setIsMobileMenuOpen(false); scrollToSection('videos', e); }} 
-              className={`w-full py-3 rounded-2xl text-left px-4 text-sm font-medium transition-all duration-200 ${activeSection === 'videos' ? 'bg-slate-900 text-primary' : 'text-slate-400 hover:bg-slate-900 hover:text-slate-100'}`}
+              className={`w-full py-3 rounded-2xl text-left px-4 text-sm font-medium flex items-center gap-3 transition-all duration-200 ${activeSection === 'videos' ? 'bg-slate-900/80 border-l-4 border-primary text-primary font-bold shadow-inner shadow-black/20' : 'text-slate-400 border-l-4 border-transparent hover:bg-slate-900/50 hover:text-slate-100 hover:border-slate-800'}`}
             >
+              <Video className={`w-4 h-4 ${activeSection === 'videos' ? 'text-primary' : 'text-slate-500'}`} />
               Trabajos
             </button>
             <button 
               onClick={(e) => { setIsMobileMenuOpen(false); scrollToSection('footer', e); }} 
-              className={`w-full py-3 rounded-2xl text-left px-4 text-sm font-medium transition-all duration-200 ${activeSection === 'footer' ? 'bg-slate-900 text-primary' : 'text-slate-400 hover:bg-slate-900 hover:text-slate-100'}`}
+              className={`w-full py-3 rounded-2xl text-left px-4 text-sm font-medium flex items-center gap-3 transition-all duration-200 ${activeSection === 'footer' ? 'bg-slate-900/80 border-l-4 border-primary text-primary font-bold shadow-inner shadow-black/20' : 'text-slate-400 border-l-4 border-transparent hover:bg-slate-900/50 hover:text-slate-100 hover:border-slate-800'}`}
             >
+              <Phone className={`w-4 h-4 ${activeSection === 'footer' ? 'text-primary' : 'text-slate-500'}`} />
               Contacto
             </button>
-            <hr className="border-slate-800/80 my-1" />
+            <hr className="border-slate-900/80 my-1" />
             <Link 
               to="/agendar" 
               onClick={() => setIsMobileMenuOpen(false)}
               className="w-full"
             >
-              <Button className="w-full shadow-primary/20 shadow-lg rounded-2xl py-3 text-sm font-semibold" size="lg">
+              <Button className="w-full shadow-primary/20 shadow-lg rounded-2xl py-3.5 text-sm font-semibold animate-pulse-glow" size="lg">
                 Reservar Turno
               </Button>
             </Link>
