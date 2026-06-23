@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { Button } from '../ui/Button';
-import { Menu, X, Home, Wrench, Video, Phone } from 'lucide-react';
+import { Menu, X, Home, Wrench, Settings, Phone } from 'lucide-react';
 
 export const Navbar = () => {
   const navRef = useRef<HTMLElement>(null);
@@ -215,7 +215,7 @@ export const Navbar = () => {
               onClick={(e) => { setIsMobileMenuOpen(false); scrollToSection('videos', e); }}
               className={`w-full py-3 rounded-2xl text-left px-4 text-sm font-medium flex items-center gap-3 transition-all duration-200 ${activeSection === 'videos' ? 'bg-slate-900/80 border-l-4 border-primary text-primary font-bold shadow-inner shadow-black/20' : 'text-slate-400 border-l-4 border-transparent hover:bg-slate-900/50 hover:text-slate-100 hover:border-slate-800'}`}
             >
-              <Video className={`w-4 h-4 ${activeSection === 'videos' ? 'text-primary' : 'text-slate-500'}`} />
+              <Settings className={`w-4 h-4 ${activeSection === 'videos' ? 'text-primary' : 'text-slate-500'}`} />
               Trabajos
             </button>
             <button

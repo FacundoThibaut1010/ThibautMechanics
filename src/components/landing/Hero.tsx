@@ -60,7 +60,10 @@ export const Hero = () => {
         <p className="hero-desc text-base md:text-lg text-slate-400 max-w-2xl mx-auto mb-6 md:mb-8 leading-relaxed">
           Frenos, amortiguadores y rótulas listos en la puerta de tu hogar.
           Servicio premium, rápido y sin ensuciarte las manos.
+
         </p>
+
+        <br />
 
         <div className="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button size="lg" onClick={scrollToBooking} className="w-full sm:w-auto group animate-pulse-glow">
