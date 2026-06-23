@@ -17,9 +17,9 @@ export const BrandsMarquee = () => {
 
   return (
     <div className="w-full bg-slate-200/90 border-y border-slate-300/80 backdrop-blur-md py-5 overflow-hidden relative z-10 select-none shadow-md">
-      {/* Soft gradient dark-fade overlays on the sides to blend with the page background */}
-      <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-slate-950 to-transparent z-20 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-slate-950 to-transparent z-20 pointer-events-none" />
+      {/* Soft gradient dark-fade overlays on the sides to blend with the page background (PC only) */}
+      <div className="hidden md:block absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-20 pointer-events-none" />
+      <div className="hidden md:block absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-20 pointer-events-none" />
 
       <div className="flex whitespace-nowrap min-w-full">
         <div className="flex gap-16 md:gap-24 animate-marquee items-center">
