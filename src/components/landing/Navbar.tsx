@@ -130,11 +130,11 @@ export const Navbar = () => {
   return (
     <nav ref={navRef} className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
       <div className="relative bg-slate-950/70 backdrop-blur-xl border border-slate-800/60 shadow-2xl shadow-black/50 rounded-full h-16 px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center text-xl font-bold tracking-tight group">
+        <Link to="/" className="flex items-center text-xl font-bold tracking-tight group flex-shrink-0">
           <img
-            src="public/images/logoIniciales.png"
+            src="/images/logoIniciales.png"
             alt="Thibaut Mechanics Logo"
-            className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_0_8px_rgba(220,38,38,0.4)] group-hover:drop-shadow-[0_0_12px_rgba(220,38,38,0.7)] transition-all duration-300 -my-2"
+            className="w-12 h-12 md:w-20 md:h-20 object-contain drop-shadow-[0_0_8px_rgba(220,38,38,0.4)] group-hover:drop-shadow-[0_0_12px_rgba(220,38,38,0.7)] transition-all duration-300 md:-my-2"
           />
         </Link>
 
